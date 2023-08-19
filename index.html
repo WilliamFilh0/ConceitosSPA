@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPA</title>
+</head>
+
+<body>
+  <nav>
+    <a href="/" onclick="route()">Home</a>
+    <a href="/about" onclick="route()">Sobre</a>
+    <a href="/contact" onclick="route()">Contato</a>
+    <a href="/404" onclick="route()">404</a>
+  </nav>
+
+  <div class="app"></div>
+
+  <script>
+    // Mapeamento das rotas para os arquivos HTML correspondentes
+    const routes = {
+      "/about": "/pages/about.html",
+      "/": "/pages/about.html",
+      "/contact": "/pages/contact.html",
+      404: "/pages/404.html",
+    }
+
+    function route(event) {
+      event = event || window.event;
+      // Impede o comportamento padrão do link de carregar uma nova página
+      event.preventDefault();
+
+      // Atualiza a URL no histórico de navegação sem recarregar a página
+      window.history.pushState({}, "", event.target.href);
+
+      // Chama a função de manipulação para atualizar a exibição
+      handle();
+    }
+
+    //9:03
+
+    function handle() {
+      // Obtém o caminho da URL atual
+      const {pathname } = window.location
+      const route = routes[pathname] || routes[404]
+
+      //Api pra pegar alguma coisaa da internet 
+      //ele sempre vai trazer uma promessa algo assincrono 
+      fetch(route.then)
+
+      // Exibe o caminho no console (apenas para fins de demonstração)
+      console.log(route);
+    }
+  </script>
+</body>
+</html>
