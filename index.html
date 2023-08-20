@@ -26,6 +26,7 @@
       404: "/pages/404.html",
     }
 
+    // Função chamada quando um link é clicado
     function route(event) {
       event = event || window.event;
       // Impede o comportamento padrão do link de carregar uma nova página
@@ -38,16 +39,19 @@
       handle();
     }
 
-    //9:03
 
     function handle() {
       // Obtém o caminho da URL atual
       const {pathname } = window.location
+      // Obtém o caminho do arquivo HTML correspondente à rota atual ou à 404
       const route = routes[pathname] || routes[404]
 
-      //Api pra pegar alguma coisaa da internet 
-      //ele sempre vai trazer uma promessa algo assincrono 
-      fetch(route.then)
+      console.log("Antes da rota")
+      
+      // Realiza uma requisição para o arquivo HTML da rota atual
+      fetch(route)
+      .then(data => data.text()) // Converte a resposta em texto
+      .then(html => console.log(html))
 
       // Exibe o caminho no console (apenas para fins de demonstração)
       console.log(route);
