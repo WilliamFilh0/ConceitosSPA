@@ -21,7 +21,7 @@
     // Mapeamento das rotas para os arquivos HTML correspondentes
     const routes = {
       "/about": "/pages/about.html",
-      "/": "/pages/about.html",
+      "/": "/pages/home.html",
       "/contact": "/pages/contact.html",
       404: "/pages/404.html",
     }
@@ -50,12 +50,15 @@
       
       // Realiza uma requisição para o arquivo HTML da rota atual
       fetch(route)
-      .then(data => data.text()) // Converte a resposta em texto
-      .then(html => console.log(html))
-
-      // Exibe o caminho no console (apenas para fins de demonstração)
-      console.log(route);
+      .then(data => data.text()) // Converte os dados em texto
+      .then(html => {
+        document.querySelector('.app').innerHTML = html
+      })
     }
+
+    handle()
+
+    window.onpopstate = () => handle()
   </script>
 </body>
 </html>
